@@ -11,9 +11,9 @@ With the desire to learn React Native and Typescript, I decided to create a basi
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Red | ![#F37878](https://via.placeholder.com/10/F37878?text=+) #F37878 |
-| Dark Gray | ![#505050](https://via.placeholder.com/10/505050?text=+) #505050 |
-| Gray | ![#F1F1F1](https://via.placeholder.com/10/f1f1f1?text=+) #F1F1F1 |
+| Red | ![#F37878](https://via.placeholder.com/10/F37878?) #F37878 |
+| Dark Gray | ![#505050](https://via.placeholder.com/10/505050) #505050 |
+| Gray | ![#F1F1F1](https://via.placeholder.com/10/f1f1f1) #F1F1F1 |
 
 
 
