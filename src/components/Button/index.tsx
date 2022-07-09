@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {Pressable, Text} from 'react-native';
-import styles from './styles';
+import React, { useEffect, useState } from "react";
+import { Pressable, StyleProp, Text, ViewStyle } from "react-native";
+import styles from "./styles";
 
 type ButtonProps = {
   onPress: () => void;
@@ -8,6 +8,8 @@ type ButtonProps = {
   isSpecial?: boolean;
   isGray?: boolean;
   isOperation?: boolean;
+  asResult?: boolean;
+  buttonStyle?: StyleProp<ViewStyle>
 };
 
 export const Button = ({
@@ -15,14 +17,20 @@ export const Button = ({
   isSpecial,
   isGray,
   isOperation,
+  asResult,
   onPress,
 }: ButtonProps) => {
   const [flex, setFlex] = useState(0);
   const [isPress, setIsPress] = useState(false);
   const [selected, setSelected] = useState(false);
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
-    title === '0' ? setFlex(2) : setFlex(1);
+    title === "0" ? setFlex(2) : setFlex(1);
+
   }, [title]);
+
+
 
   var touchProps = {
     style: [
@@ -35,12 +43,15 @@ export const Button = ({
         ? styles.isRed
         : {},
       isPress ? styles.btnPress : styles.btnNormal,
-      {flex: flex},
+      { flex: flex },
     ],
-    onPressOut: () => setIsPress(false),
+    onPressOut: () => {
+      setIsPress(false);
+    },
+
     onPressIn: () => {
+
       setIsPress(true);
-      isOperation ? setSelected(false) : setSelected(false);
     },
   };
 
@@ -56,9 +67,7 @@ export const Button = ({
   };
 
   return (
-    <Pressable
-      onPress={onPress}
-      {...touchProps}>
+    <Pressable onPress={onPress} {...touchProps}>
       <Text {...textProps}>{title}</Text>
     </Pressable>
   );
