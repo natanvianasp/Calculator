@@ -13,9 +13,12 @@ export const Calculator = () => {
 
   const [asResult, setAsResult] = useState(false);
 
+  const [clearType, setClearType] = useState("AC");
+
   const handleNumberPress = (buttonValue: string) => {
     if (operation === "" && firstNumber.length < 10) {
       setFirstNumber(firstNumber + buttonValue);
+      setClearType("C");
     }
     if (operation !== "" && secondNumber.length < 10) {
       setSecondNumber(secondNumber + buttonValue);
@@ -60,11 +63,20 @@ export const Calculator = () => {
   };
 
   const Clear = () => {
+    setResult(0);
     setFirstNumber("");
     setSecondNumber("");
     setOperation("");
-    setResult(0);
   };
+
+  useEffect(() => {
+    result === 0 &&
+    firstNumber === "" &&
+    secondNumber === "" &&
+    operation === ""
+      ? setClearType("AC")
+      : setClearType("C");
+  }, [Clear]);
 
   const getResult = () => {
     if (operation !== "" && firstNumber !== "" && secondNumber !== "") {
@@ -98,7 +110,7 @@ export const Calculator = () => {
 
   useEffect(() => {
     result !== 0
-      ? setNumberDisplay(result.toString().replace('.', ','))
+      ? setNumberDisplay(result.toString().replace(".", ","))
       : firstNumber !== "" && result === 0 && secondNumber === ""
       ? setNumberDisplay(firstNumber.replace(".", ","))
       : firstNumber === "" && result === 0 && secondNumber !== ""
@@ -116,7 +128,7 @@ export const Calculator = () => {
     <View style={styles.container}>
       <Display number={numberDisplay} />
       <View style={styles.row}>
-        <Button title="AC" isGray onPress={() => Clear()} />
+        <Button title={clearType} isGray onPress={() => Clear()} />
         <Button title="±" isGray onPress={() => handleOperationPress("+/-")} />
         <Button title="%" isGray onPress={() => handleOperationPress("%")} />
         <Button
